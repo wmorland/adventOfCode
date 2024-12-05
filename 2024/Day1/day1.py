@@ -8,14 +8,10 @@ s = np.sum(np.abs(np.sort(col1) - np.sort(col2)))
 
 print(s)
 
-# Part 2
+# Part 2: Calculate similarity score based on frequency in the second array
 values, counts = np.unique(col2, return_counts=True)
-
 freq = dict(zip(values, counts))
 
-similarity = 0
-for i in range(len(col1)):
-    if (col1[i] in freq):
-        similarity += col1[i] * freq[col1[i]]
-
+# Compute similarity score using a list comprehension
+similarity = sum(val * freq[val] for val in col1 if val in freq)
 print(similarity)
